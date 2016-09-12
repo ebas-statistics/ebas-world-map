@@ -43,7 +43,7 @@
     }
     
     #sankey_container {
-        background-color:grey;
+        background-color:white;
     }
     
 </style>
@@ -146,12 +146,12 @@ var data_with_nilu_internal = [
     .type("geo_map")          
     .id("country")            
     .text("name")
-    .background("#f0f0f0") 
+    .background("#ffffff") 
     .legend({
         "value": true,
     })
     .color({
-        "heatmap":["#deebf7","#67000d"], 
+        "heatmap":["#fff5f0","#67000d"], 
         "value":"users"
     })           
     .tooltip("users")         
@@ -261,8 +261,9 @@ var data_with_nilu_internal = [
     .id("country")            
     .labels({"value": true})
     .text("name")
-    .background("#f0f0f0") 
-    .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           
+    .background("#ffffff") 
+    .color({"heatmap":["#fff5f0","#67000d"], 
+            "value":"users"})           
     .tooltip("users")         // keys to place in tooltip
     .title({
        "sub": "EBAS Data Access by User: Without NILU internal users",
