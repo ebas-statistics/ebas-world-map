@@ -52,57 +52,96 @@
 
 <body>
     
-<div id="viz-zeppelin-all">
+<div id="viz-with-internal">
     
 </div>    
         
 <script>
 
-var sample_data = [
-    {"users":205, "country":"eunor", "name":"Norway"},
-    {"users":138, "country":"nausa", "name":"United States"},
-    {"users":99, "country":"eugbr", "name":"United Kingdom"},
-    {"users":61, "country":"eudeu", "name":"Germany"},
-    {"users":61, "country":"euche", "name":"Switzerland"},
-    {"users":56, "country":"euswe", "name":"Sweden"},
-    {"users":49, "country":"eufin", "name":"Finland"},
-    {"users":40, "country":"eufra", "name":"France"},
-    {"users":34, "country":"eugrc", "name":"Greece"},
-    {"users":32, "country":"euita", "name":"Italy"},
-    {"users":30, "country":"aschn", "name":"China"},
-    {"users":24, "country":"asjpn", "name":"Japan"},
-    {"users":30, "country":"eunld", "name":"Netherlands"},
-    {"users":24, "country":"eucze", "name":"Czech Republic"},
-    {"users":22, "country":"nacan", "name":"Canada"},
-    {"users":17, "country":"euesp", "name":"Spain"},
-    {"users":16, "country":"askor", "name":"South Korea"},
-    {"users":10, "country":"eudnk", "name":"Denmark"},
-    {"users":9, "country":"eupol", "name":"Poland"},
-    {"users":8, "country":"asrus", "name":"Russia"},
-    {"users":6, "country":"ocaus", "name":"Australia"},
-    {"users":4, "country":"euisl", "name":"Iceland"},
-    {"users":5, "country":"eubel", "name":"Belgium"},
-    {"users":4, "country":"asind", "name":"India"},
-    {"users":4, "country":"euirl", "name":"Ireland"},
-    {"users":4, "country":"eusvn", "name":"Slovenia"},
-    {"users":3, "country":"assgp", "name":"Singapore"},
-    {"users":3, "country":"euaut", "name":"Austria"},
-    {"users":2, "country":"eublr", "name":"Belarus"},
-    {"users":2, "country":"eusvk", "name":"Slovakia"},
-    {"users":1, "country":"euhrv", "name":"Croatia"},
-    {"users":1, "country":"sabra", "name":"Brazil"},
-    {"users":1, "country":"astwn", "name":"Taiwan"},
-    {"users":1, "country":"astur", "name":"Turkey"},
-    {"users":1, "country":"ocnzl", "name":"New Zealand"},
-    {"users":1, "country":"eulux", "name":"Luxembourg"},
-    {"users":1, "country":"euest", "name":"Estonia"},
-    {"users":1, "country":"afzaf", "name":"South Africa"},
+var data_with_nilu_internal = [
+    {"users":1294, "country":"eunor", "name":"Norway (503) + NILU Internal (791)"},
+    {"users":530, "country":"nausa", "name":"United States"},
+    {"users":500, "country":"eugbr", "name":"United Kingdom"},
+    {"users":383, "country":"eudeu", "name":"Germany"},
+    {"users":330, "country":"euche", "name":"Switzerland"},
+    {"users":172, "country":"euswe", "name":"Sweden"},
+    {"users":175, "country":"eufin", "name":"Finland"},
+    {"users":217, "country":"eufra", "name":"France"},
+    {"users":258, "country":"eugrc", "name":"Greece"},
+    {"users":241, "country":"euita", "name":"Italy"},
+    {"users":97, "country":"aschn", "name":"China"},
+    {"users":58, "country":"asjpn", "name":"Japan"},
+    {"users":119, "country":"eunld", "name":"Netherlands"},
+    {"users":89, "country":"eucze", "name":"Czech Republic"},
+    {"users":89, "country":"nacan", "name":"Canada"},
+    {"users":169, "country":"euesp", "name":"Spain"},
+    {"users":55, "country":"askor", "name":"South Korea"},
+    {"users":42, "country":"eudnk", "name":"Denmark"},
+    {"users":94, "country":"eupol", "name":"Poland"},
+    {"users":43, "country":"asrus", "name":"Russia"},
+    {"users":29, "country":"ocaus", "name":"Australia"},
+    {"users":16, "country":"euisl", "name":"Iceland"},
+    {"users":29, "country":"eubel", "name":"Belgium"},
+    {"users":18, "country":"asind", "name":"India"},
+    {"users":54, "country":"euirl", "name":"Ireland"},
+    {"users":11, "country":"eusvn", "name":"Slovenia"},
+    {"users":14, "country":"assgp", "name":"Singapore"},
+    {"users":30, "country":"euaut", "name":"Austria"},
+    {"users":5, "country":"eublr", "name":"Belarus"},
+    {"users":11, "country":"eusvk", "name":"Slovakia"},
+    {"users":10, "country":"euhrv", "name":"Croatia"},
+    {"users":4, "country":"sabra", "name":"Brazil"},
+    {"users":12, "country":"astwn", "name":"Taiwan"},
+    {"users":26, "country":"astur", "name":"Turkey"},
+    {"users":2, "country":"ocnzl", "name":"New Zealand"},
+    {"users":3, "country":"eulux", "name":"Luxembourg"},
+    {"users":7, "country":"euest", "name":"Estonia"},
+    {"users":4, "country":"afzaf", "name":"South Africa"},
+    {"users":48, "country":"euhun", "name":"Hungary"},
+    {"users":21, "country":"euprt", "name":"Portugal"},
+    {"users":17, "country":"eurou", "name":"Romania"},
+    {"users":17, "country":"ocidn", "name":"Indonesia"},
+    {"users":14, "country":"eusrb", "name":"Serbia"},
+    {"users":10, "country":"eubgr", "name":"Bulgaria"},
+    {"users":10, "country":"eultu", "name":"Lithuania"},
+    {"users":9, "country":"asisr", "name":"Israel"},
+    {"users":6, "country":"ashkg", "name":"Hong Kong"},
+    {"users":6, "country":"afegy", "name":"Egypt"},
+    {"users":6, "country":"sabol", "name":"Bolivia"},
+    {"users":6, "country":"asirn", "name":"Iran"},
+    {"users":6, "country":"ascyp", "name":"Cyprus"},
+    {"users":5, "country":"eulva", "name":"Latvia"},
+    {"users":5, "country":"euukr", "name":"Ukraine"},
+    {"users":4, "country":"eumkd", "name":"Macedonia"},
+    {"users":4, "country":"eumlt", "name":"Malta"},
+    {"users":4, "country":"asarm", "name":"Armenia"},
+    {"users":3, "country":"afdza", "name":"Algeria"},
+    {"users":3, "country":"afreu", "name":"Reunion"},
+    {"users":3, "country":"asnpl", "name":"Nepal"},
+    {"users":3, "country":"eubih", "name":"Bosnia and Herzegovina"},
+    {"users":3, "country":"afmar", "name":"Morocco"},
+    {"users":3, "country":"afken", "name":"Kenya"},
+    {"users":3, "country":"asmys", "name":"Malaysia"},
+    {"users":2, "country":"napri", "name":"Puerto Rico"},
+    {"users":2, "country":"saper", "name":"Peru"},
+    {"users":2, "country":"sacol", "name":"Colombia"},
+    {"users":2, "country":"sachl", "name":"Chile"},
+    {"users":2, "country":"asgeo", "name":"Georgia"},
+    {"users":2, "country":"saarg", "name":"Argentina"},
+    {"users":2, "country":"assau", "name":"Saudi Arabia"},
+    {"users":1, "country":"asbgd", "name":"Bangladesh"},
+    {"users":1, "country":"asare", "name":"United Arab Emirates"},
+    {"users":1, "country":"astha", "name":"Thailand"},
+    {"users":1, "country":"asvnm", "name":"Vietnam"},
+    {"users":1, "country":"asqat", "name":"Qatar"},
+    {"users":1, "country":"saury", "name":"Uruguay"},
+    {"users":1, "country":"namex", "name":"Mexico"}
 
 ]
 
   var visualization = d3plus.viz()
-    .container("#viz-zeppelin-all")       
-    .data(sample_data)        
+    .container("#viz-with-internal")       
+    .data(data_with_nilu_internal)        
     .coords("countries.json")
     .type("geo_map")          
     .id("country")            
@@ -112,63 +151,111 @@ var sample_data = [
         "value": true,
     })
     .color({
-        "heatmap":["#4393c3","#b2182b"], 
+        "heatmap":["#deebf7","#67000d"], 
         "value":"users"
     })           
     .tooltip("users")         
     .title({
-       "sub": "Data Access by User Country: Zeppelin (all)",
+       "sub": "EBAS Data Access by User: With NILU internal users",
       "total": true,
       "width": 1200
        
     })
-    .font({"size": 40})   
+    .legend({"size": 50})
+    .font({"size": 20})   
     .draw()                   
   
 </script>
     <hr>
-<div id="viz-zeppelin-only-actris-variables">
+<div id="viz-without-internal">
     
 </div>       
     
 <script>
 
-  var sample_data = [
-{"users":118, "country":"eunor", "name":"Norway"},
-{"users":98, "country":"nausa", "name":"United States"},
-{"users":46, "country":"eugbr", "name":"United Kingdom"},
-{"users":42, "country":"eufin", "name":"Finland"},
-{"users":40, "country":"euswe", "name":"Sweden"},
-{"users":34, "country":"eudeu", "name":"Germany"},
-{"users":30, "country":"eufra", "name":"France"},
-{"users":30, "country":"euche", "name":"Switzerland"},
-{"users":25, "country":"eugrc", "name":"Greece"},
-{"users":19, "country":"eunld", "name":"Netherlands"},
-{"users":18, "country":"nacan", "name":"Canada"},
-{"users":17, "country":"asjpn", "name":"Japan"},
-{"users":17, "country":"aschn", "name":"China"},
-{"users":15, "country":"euita", "name":"Italy"},
-{"users":12, "country":"askor", "name":"South Korea"},
-{"users":7, "country":"eudnk", "name":"Denmark"},
-{"users":5, "country":"euesp", "name":"Spain"},
-{"users":4, "country":"asind", "name":"India"},
-{"users":3, "country":"eubel", "name":"Belgium"},
-{"users":3, "country":"asrus", "name":"Russia"},
-{"users":3, "country":"euisl", "name":"Iceland"},
-{"users":3, "country":"eupol", "name":"Poland"},
-{"users":3, "country":"ocaus", "name":"Australia"},
-{"users":3, "country":"assgp", "name":"Singapore"},
-{"users":2, "country":"euirl", "name":"Ireland"},
-{"users":2, "country":"euaut", "name":"Austria"},
-{"users":1, "country":"eulux", "name":"Luxembourg"},
-{"users":1, "country":"euest", "name":"Estonia"},
-{"users":1, "country":"eucze", "name":"Czech Republic"},
-{"users":1, "country":"afzaf", "name":"South Africa"},
+  var data_without_nilu_internal = [
+    {"users":503, "country":"eunor", "name":"Norway"},
+    {"users":530, "country":"nausa", "name":"United States"},
+    {"users":500, "country":"eugbr", "name":"United Kingdom"},
+    {"users":383, "country":"eudeu", "name":"Germany"},
+    {"users":330, "country":"euche", "name":"Switzerland"},
+    {"users":172, "country":"euswe", "name":"Sweden"},
+    {"users":175, "country":"eufin", "name":"Finland"},
+    {"users":217, "country":"eufra", "name":"France"},
+    {"users":258, "country":"eugrc", "name":"Greece"},
+    {"users":241, "country":"euita", "name":"Italy"},
+    {"users":97, "country":"aschn", "name":"China"},
+    {"users":58, "country":"asjpn", "name":"Japan"},
+    {"users":119, "country":"eunld", "name":"Netherlands"},
+    {"users":89, "country":"eucze", "name":"Czech Republic"},
+    {"users":89, "country":"nacan", "name":"Canada"},
+    {"users":169, "country":"euesp", "name":"Spain"},
+    {"users":55, "country":"askor", "name":"South Korea"},
+    {"users":42, "country":"eudnk", "name":"Denmark"},
+    {"users":94, "country":"eupol", "name":"Poland"},
+    {"users":43, "country":"asrus", "name":"Russia"},
+    {"users":29, "country":"ocaus", "name":"Australia"},
+    {"users":16, "country":"euisl", "name":"Iceland"},
+    {"users":29, "country":"eubel", "name":"Belgium"},
+    {"users":18, "country":"asind", "name":"India"},
+    {"users":54, "country":"euirl", "name":"Ireland"},
+    {"users":11, "country":"eusvn", "name":"Slovenia"},
+    {"users":14, "country":"assgp", "name":"Singapore"},
+    {"users":30, "country":"euaut", "name":"Austria"},
+    {"users":5, "country":"eublr", "name":"Belarus"},
+    {"users":11, "country":"eusvk", "name":"Slovakia"},
+    {"users":10, "country":"euhrv", "name":"Croatia"},
+    {"users":4, "country":"sabra", "name":"Brazil"},
+    {"users":12, "country":"astwn", "name":"Taiwan"},
+    {"users":26, "country":"astur", "name":"Turkey"},
+    {"users":2, "country":"ocnzl", "name":"New Zealand"},
+    {"users":3, "country":"eulux", "name":"Luxembourg"},
+    {"users":7, "country":"euest", "name":"Estonia"},
+    {"users":4, "country":"afzaf", "name":"South Africa"},
+    {"users":48, "country":"euhun", "name":"Hungary"},
+    {"users":21, "country":"euprt", "name":"Portugal"},
+    {"users":17, "country":"eurou", "name":"Romania"},
+    {"users":17, "country":"ocidn", "name":"Indonesia"},
+    {"users":14, "country":"eusrb", "name":"Serbia"},
+    {"users":10, "country":"eubgr", "name":"Bulgaria"},
+    {"users":10, "country":"eultu", "name":"Lithuania"},
+    {"users":9, "country":"asisr", "name":"Israel"},
+    {"users":6, "country":"ashkg", "name":"Hong Kong"},
+    {"users":6, "country":"afegy", "name":"Egypt"},
+    {"users":6, "country":"sabol", "name":"Bolivia"},
+    {"users":6, "country":"asirn", "name":"Iran"},
+    {"users":6, "country":"ascyp", "name":"Cyprus"},
+    {"users":5, "country":"eulva", "name":"Latvia"},
+    {"users":5, "country":"euukr", "name":"Ukraine"},
+    {"users":4, "country":"eumkd", "name":"Macedonia"},
+    {"users":4, "country":"eumlt", "name":"Malta"},
+    {"users":4, "country":"asarm", "name":"Armenia"},
+    {"users":3, "country":"afdza", "name":"Algeria"},
+    {"users":3, "country":"afreu", "name":"Reunion"},
+    {"users":3, "country":"asnpl", "name":"Nepal"},
+    {"users":3, "country":"eubih", "name":"Bosnia and Herzegovina"},
+    {"users":3, "country":"afmar", "name":"Morocco"},
+    {"users":3, "country":"afken", "name":"Kenya"},
+    {"users":3, "country":"asmys", "name":"Malaysia"},
+    {"users":2, "country":"napri", "name":"Puerto Rico"},
+    {"users":2, "country":"saper", "name":"Peru"},
+    {"users":2, "country":"sacol", "name":"Colombia"},
+    {"users":2, "country":"sachl", "name":"Chile"},
+    {"users":2, "country":"asgeo", "name":"Georgia"},
+    {"users":2, "country":"saarg", "name":"Argentina"},
+    {"users":2, "country":"assau", "name":"Saudi Arabia"},
+    {"users":1, "country":"asbgd", "name":"Bangladesh"},
+    {"users":1, "country":"asare", "name":"United Arab Emirates"},
+    {"users":1, "country":"astha", "name":"Thailand"},
+    {"users":1, "country":"asvnm", "name":"Vietnam"},
+    {"users":1, "country":"asqat", "name":"Qatar"},
+    {"users":1, "country":"saury", "name":"Uruguay"},
+    {"users":1, "country":"namex", "name":"Mexico"}
 ]
 
   var visualization = d3plus.viz()
-    .container("#viz-zeppelin-only-actris-variables")        
-    .data(sample_data)        
+    .container("#viz-without-internal")        
+    .data(data_without_nilu_internal)        
     .coords("countries.json")
     .type("geo_map")        
     .id("country")            
@@ -178,11 +265,12 @@ var sample_data = [
     .color({"heatmap":["#4393c3","#b2182b"], "value":"users"})           
     .tooltip("users")         // keys to place in tooltip
     .title({
-       "sub": "Data Access by User Country: Zeppelin (only ACTRIS variables)",
+       "sub": "EBAS Data Access by User: Without NILU internal users",
       "total": true,
       "width": 1200,       
     })
-    .font({"size": 40})   
+    .legend({"size": 50})
+    .font({"size": 20})    
     .draw()                   
   
 
