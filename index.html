@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html>
@@ -6,278 +7,72 @@
 
 <meta charset="utf-8">
 
-<!-- load D3js -->
-<script src="d3.js"></script>
+<link href="bootstrap.min.css" type="text/css" rel="stylesheet">    
+    
 
-<!-- load topojson library -->
-<script src="topojson.js"></script>
-
-<!-- load D3plus after D3js -->
-<script src="d3plus.js"></script>
-
-<!-- create container element for visualization -->
-<div id="viz"></div>
     
 <style>
-    
-    tspan {
-        font-family: Arial, Helvetica, sans-serif;
-        /*font-size:1.3em;*/
-        margin:30px;
+    body {
+        margin:4em;
     }
-    
-    #viz {
-        /*margin-top:200px;
-        width: 800px;   
-        height: 800px;*/
-    }
-    
-    #viz_sankey {
-        width: 1200px;
-        height:600px;
-        margin-top:100px;
-        margin-left:400px;
-        margin-right:300px;
-        margin-bottom:200px;
-        
-    }
-    
-    #sankey_container {
-        background-color:white;
-    }
+</style
     
 </style>
 
 </head>
 
 <body>
-    
-<div id="viz-without-internal">
-    
-</div>    
-        
-<script>
-
-var data_with_nilu_internal = [
-    {"# of unique IPs":1294, "country":"eunor", "name":"Norway (503) + NILU Internal (791)"},
-    {"# of unique IPs":530, "country":"nausa", "name":"United States"},
-    {"# of unique IPs":500, "country":"eugbr", "name":"United Kingdom"},
-    {"# of unique IPs":383, "country":"eudeu", "name":"Germany"},
-    {"# of unique IPs":330, "country":"euche", "name":"Switzerland"},
-    {"# of unique IPs":172, "country":"euswe", "name":"Sweden"},
-    {"# of unique IPs":175, "country":"eufin", "name":"Finland"},
-    {"# of unique IPs":217, "country":"eufra", "name":"France"},
-    {"# of unique IPs":258, "country":"eugrc", "name":"Greece"},
-    {"# of unique IPs":241, "country":"euita", "name":"Italy"},
-    {"# of unique IPs":97, "country":"aschn", "name":"China"},
-    {"# of unique IPs":58, "country":"asjpn", "name":"Japan"},
-    {"# of unique IPs":119, "country":"eunld", "name":"Netherlands"},
-    {"# of unique IPs":89, "country":"eucze", "name":"Czech Republic"},
-    {"# of unique IPs":89, "country":"nacan", "name":"Canada"},
-    {"# of unique IPs":169, "country":"euesp", "name":"Spain"},
-    {"# of unique IPs":55, "country":"askor", "name":"South Korea"},
-    {"# of unique IPs":42, "country":"eudnk", "name":"Denmark"},
-    {"# of unique IPs":94, "country":"eupol", "name":"Poland"},
-    {"# of unique IPs":43, "country":"asrus", "name":"Russia"},
-    {"# of unique IPs":29, "country":"ocaus", "name":"Australia"},
-    {"# of unique IPs":16, "country":"euisl", "name":"Iceland"},
-    {"# of unique IPs":29, "country":"eubel", "name":"Belgium"},
-    {"# of unique IPs":18, "country":"asind", "name":"India"},
-    {"# of unique IPs":54, "country":"euirl", "name":"Ireland"},
-    {"# of unique IPs":11, "country":"eusvn", "name":"Slovenia"},
-    {"# of unique IPs":14, "country":"assgp", "name":"Singapore"},
-    {"# of unique IPs":30, "country":"euaut", "name":"Austria"},
-    {"# of unique IPs":5, "country":"eublr", "name":"Belarus"},
-    {"# of unique IPs":11, "country":"eusvk", "name":"Slovakia"},
-    {"# of unique IPs":10, "country":"euhrv", "name":"Croatia"},
-    {"# of unique IPs":4, "country":"sabra", "name":"Brazil"},
-    {"# of unique IPs":12, "country":"astwn", "name":"Taiwan"},
-    {"# of unique IPs":26, "country":"astur", "name":"Turkey"},
-    {"# of unique IPs":2, "country":"ocnzl", "name":"New Zealand"},
-    {"# of unique IPs":3, "country":"eulux", "name":"Luxembourg"},
-    {"# of unique IPs":7, "country":"euest", "name":"Estonia"},
-    {"# of unique IPs":4, "country":"afzaf", "name":"South Africa"},
-    {"# of unique IPs":48, "country":"euhun", "name":"Hungary"},
-    {"# of unique IPs":21, "country":"euprt", "name":"Portugal"},
-    {"# of unique IPs":17, "country":"eurou", "name":"Romania"},
-    {"# of unique IPs":17, "country":"ocidn", "name":"Indonesia"},
-    {"# of unique IPs":14, "country":"eusrb", "name":"Serbia"},
-    {"# of unique IPs":10, "country":"eubgr", "name":"Bulgaria"},
-    {"# of unique IPs":10, "country":"eultu", "name":"Lithuania"},
-    {"# of unique IPs":9, "country":"asisr", "name":"Israel"},
-    {"# of unique IPs":6, "country":"ashkg", "name":"Hong Kong"},
-    {"# of unique IPs":6, "country":"afegy", "name":"Egypt"},
-    {"# of unique IPs":6, "country":"sabol", "name":"Bolivia"},
-    {"# of unique IPs":6, "country":"asirn", "name":"Iran"},
-    {"# of unique IPs":6, "country":"ascyp", "name":"Cyprus"},
-    {"# of unique IPs":5, "country":"eulva", "name":"Latvia"},
-    {"# of unique IPs":5, "country":"euukr", "name":"Ukraine"},
-    {"# of unique IPs":4, "country":"eumkd", "name":"Macedonia"},
-    {"# of unique IPs":4, "country":"eumlt", "name":"Malta"},
-    {"# of unique IPs":4, "country":"asarm", "name":"Armenia"},
-    {"# of unique IPs":3, "country":"afdza", "name":"Algeria"},
-    {"# of unique IPs":3, "country":"afreu", "name":"Reunion"},
-    {"# of unique IPs":3, "country":"asnpl", "name":"Nepal"},
-    {"# of unique IPs":3, "country":"eubih", "name":"Bosnia and Herzegovina"},
-    {"# of unique IPs":3, "country":"afmar", "name":"Morocco"},
-    {"# of unique IPs":3, "country":"afken", "name":"Kenya"},
-    {"# of unique IPs":3, "country":"asmys", "name":"Malaysia"},
-    {"# of unique IPs":2, "country":"napri", "name":"Puerto Rico"},
-    {"# of unique IPs":2, "country":"saper", "name":"Peru"},
-    {"# of unique IPs":2, "country":"sacol", "name":"Colombia"},
-    {"# of unique IPs":2, "country":"sachl", "name":"Chile"},
-    {"# of unique IPs":2, "country":"asgeo", "name":"Georgia"},
-    {"# of unique IPs":2, "country":"saarg", "name":"Argentina"},
-    {"# of unique IPs":2, "country":"assau", "name":"Saudi Arabia"},
-    {"# of unique IPs":1, "country":"asbgd", "name":"Bangladesh"},
-    {"# of unique IPs":1, "country":"asare", "name":"United Arab Emirates"},
-    {"# of unique IPs":1, "country":"astha", "name":"Thailand"},
-    {"# of unique IPs":1, "country":"asvnm", "name":"Vietnam"},
-    {"# of unique IPs":1, "country":"asqat", "name":"Qatar"},
-    {"# of unique IPs":1, "country":"saury", "name":"Uruguay"},
-    {"# of unique IPs":1, "country":"namex", "name":"Mexico"}
-
-]
-
-  var visualization = d3plus.viz()
-    .container("#viz-with-internal")       
-    .data(data_with_nilu_internal)        
-    .coords("countries.json")
-    .type("geo_map")          
-    .id("country")            
-    .text("name")
-    .background("#ffffff") 
-    .legend({
-        "value": true,
-    })
-    .color({
-        "heatmap":["#e5f5e0","#08306b"], 
-        "value":"# of unique IPs"
-    })           
-    .tooltip("# of unique IPs")         
-    .title({
-       "sub": "EBAS Data Access by User Country (# of unique IPs) since 2009: With NILU internal users",
-      "total": true,
-      "width": 1200
-       
-    })
-    .legend({"size": 50})
-    .font({"size": 20})   
-    .draw()                   
   
-</script>
-    <hr>
-<div id="viz-with-internal">
-    
-</div>       
-    
-<script>
-
-  var data_without_nilu_internal = [
-    {"# of unique IPs":503, "country":"eunor", "name":"Norway"},
-    {"# of unique IPs":530, "country":"nausa", "name":"United States"},
-    {"# of unique IPs":500, "country":"eugbr", "name":"United Kingdom"},
-    {"# of unique IPs":383, "country":"eudeu", "name":"Germany"},
-    {"# of unique IPs":330, "country":"euche", "name":"Switzerland"},
-    {"# of unique IPs":172, "country":"euswe", "name":"Sweden"},
-    {"# of unique IPs":175, "country":"eufin", "name":"Finland"},
-    {"# of unique IPs":217, "country":"eufra", "name":"France"},
-    {"# of unique IPs":258, "country":"eugrc", "name":"Greece"},
-    {"# of unique IPs":241, "country":"euita", "name":"Italy"},
-    {"# of unique IPs":97, "country":"aschn", "name":"China"},
-    {"# of unique IPs":58, "country":"asjpn", "name":"Japan"},
-    {"# of unique IPs":119, "country":"eunld", "name":"Netherlands"},
-    {"# of unique IPs":89, "country":"eucze", "name":"Czech Republic"},
-    {"# of unique IPs":89, "country":"nacan", "name":"Canada"},
-    {"# of unique IPs":169, "country":"euesp", "name":"Spain"},
-    {"# of unique IPs":55, "country":"askor", "name":"South Korea"},
-    {"# of unique IPs":42, "country":"eudnk", "name":"Denmark"},
-    {"# of unique IPs":94, "country":"eupol", "name":"Poland"},
-    {"# of unique IPs":43, "country":"asrus", "name":"Russia"},
-    {"# of unique IPs":29, "country":"ocaus", "name":"Australia"},
-    {"# of unique IPs":16, "country":"euisl", "name":"Iceland"},
-    {"# of unique IPs":29, "country":"eubel", "name":"Belgium"},
-    {"# of unique IPs":18, "country":"asind", "name":"India"},
-    {"# of unique IPs":54, "country":"euirl", "name":"Ireland"},
-    {"# of unique IPs":11, "country":"eusvn", "name":"Slovenia"},
-    {"# of unique IPs":14, "country":"assgp", "name":"Singapore"},
-    {"# of unique IPs":30, "country":"euaut", "name":"Austria"},
-    {"# of unique IPs":5, "country":"eublr", "name":"Belarus"},
-    {"# of unique IPs":11, "country":"eusvk", "name":"Slovakia"},
-    {"# of unique IPs":10, "country":"euhrv", "name":"Croatia"},
-    {"# of unique IPs":4, "country":"sabra", "name":"Brazil"},
-    {"# of unique IPs":12, "country":"astwn", "name":"Taiwan"},
-    {"# of unique IPs":26, "country":"astur", "name":"Turkey"},
-    {"# of unique IPs":2, "country":"ocnzl", "name":"New Zealand"},
-    {"# of unique IPs":3, "country":"eulux", "name":"Luxembourg"},
-    {"# of unique IPs":7, "country":"euest", "name":"Estonia"},
-    {"# of unique IPs":4, "country":"afzaf", "name":"South Africa"},
-    {"# of unique IPs":48, "country":"euhun", "name":"Hungary"},
-    {"# of unique IPs":21, "country":"euprt", "name":"Portugal"},
-    {"# of unique IPs":17, "country":"eurou", "name":"Romania"},
-    {"# of unique IPs":17, "country":"ocidn", "name":"Indonesia"},
-    {"# of unique IPs":14, "country":"eusrb", "name":"Serbia"},
-    {"# of unique IPs":10, "country":"eubgr", "name":"Bulgaria"},
-    {"# of unique IPs":10, "country":"eultu", "name":"Lithuania"},
-    {"# of unique IPs":9, "country":"asisr", "name":"Israel"},
-    {"# of unique IPs":6, "country":"ashkg", "name":"Hong Kong"},
-    {"# of unique IPs":6, "country":"afegy", "name":"Egypt"},
-    {"# of unique IPs":6, "country":"sabol", "name":"Bolivia"},
-    {"# of unique IPs":6, "country":"asirn", "name":"Iran"},
-    {"# of unique IPs":6, "country":"ascyp", "name":"Cyprus"},
-    {"# of unique IPs":5, "country":"eulva", "name":"Latvia"},
-    {"# of unique IPs":5, "country":"euukr", "name":"Ukraine"},
-    {"# of unique IPs":4, "country":"eumkd", "name":"Macedonia"},
-    {"# of unique IPs":4, "country":"eumlt", "name":"Malta"},
-    {"# of unique IPs":4, "country":"asarm", "name":"Armenia"},
-    {"# of unique IPs":3, "country":"afdza", "name":"Algeria"},
-    {"# of unique IPs":3, "country":"afreu", "name":"Reunion"},
-    {"# of unique IPs":3, "country":"asnpl", "name":"Nepal"},
-    {"# of unique IPs":3, "country":"eubih", "name":"Bosnia and Herzegovina"},
-    {"# of unique IPs":3, "country":"afmar", "name":"Morocco"},
-    {"# of unique IPs":3, "country":"afken", "name":"Kenya"},
-    {"# of unique IPs":3, "country":"asmys", "name":"Malaysia"},
-    {"# of unique IPs":2, "country":"napri", "name":"Puerto Rico"},
-    {"# of unique IPs":2, "country":"saper", "name":"Peru"},
-    {"# of unique IPs":2, "country":"sacol", "name":"Colombia"},
-    {"# of unique IPs":2, "country":"sachl", "name":"Chile"},
-    {"# of unique IPs":2, "country":"asgeo", "name":"Georgia"},
-    {"# of unique IPs":2, "country":"saarg", "name":"Argentina"},
-    {"# of unique IPs":2, "country":"assau", "name":"Saudi Arabia"},
-    {"# of unique IPs":1, "country":"asbgd", "name":"Bangladesh"},
-    {"# of unique IPs":1, "country":"asare", "name":"United Arab Emirates"},
-    {"# of unique IPs":1, "country":"astha", "name":"Thailand"},
-    {"# of unique IPs":1, "country":"asvnm", "name":"Vietnam"},
-    {"# of unique IPs":1, "country":"asqat", "name":"Qatar"},
-    {"# of unique IPs":1, "country":"saury", "name":"Uruguay"},
-    {"# of unique IPs":1, "country":"namex", "name":"Mexico"}
-]
-
-  var visualization = d3plus.viz()
-    .container("#viz-without-internal")        
-    .data(data_without_nilu_internal)        
-    .coords("countries.json")
-    .type("geo_map")        
-    .id("country")            
-    .labels({"value": true})
-    .text("name")
-    .background("#ffffff") 
-    .color({"heatmap":["#e5f5e0","#08306b"], 
-            "value":"# of unique IPs"})           
-    .tooltip("# of unique IPs")         // keys to place in tooltip
-    .title({
-       "sub": "EBAS Data Access by User Country (# of unique IPs) since 2009: Without NILU internal users",
-      "total": true,
-      "width": 1200,       
-    })
-    .legend({"size": 50})
-    .font({"size": 20})    
-    .draw()                   
+<h1 style="margin-bottom:1em;">EBAS user statistics</h1>
   
+<div id="map-links">  
+    
+      <h2>2009-2016</h2>
+      <hr>
+          
+      <div style="margin-bottom:4em;" class="row">
+        <div class="col-lg-4">
+          
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <a href="https://ebas-statistics.github.io/ebas-world-map/tot_2009-2016.html">EBAS Data Access by User Country (# of unique IPs) from 2009 - September 2016: With NILU internal users</a>
+            <p><i>Production date: 12th of September 2016</i></p>
+        </div>
+</div>
+<!-- new row -->
 
-  
-</script>
- 
+      <h2>2017</h2>
+      <hr>
+
+      <div style="margin-bottom:4em;" class="row">
+        <div class="col-lg-4">
+          
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <a href="https://ebas-statistics.github.io/ebas-world-map/2017/ebas_data_access_by_user_country_datasets_all_frameworks/index.html">EBAS Data Access by User Country (# Datasets) - EMEP, ACTRIS, GAW-WDCA, GAW-WDCRG</a>
+            <p><i>Production date: 18th of January 2018</i></p>
+        </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                <a href="https://ebas-statistics.github.io/ebas-world-map/2017/ebas_data_access_by_user_country_datasets_emep_actris_gaw-wdca_gaw-wdcrg/index.html">EBAS Data Access by User Country (# Datasets) - EMEP, ACTRIS, GAW-WDCA, GAW-WDCRG</a>
+                    <p><i>Production date: 18th of January 2018</i></p>
+
+          </div>
+
+        <div class="col-lg-4">
+          
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <a href="https://ebas-statistics.github.io/ebas-world-map/2017/ebas_data_access_by_user_country_unique_ips_all_frameworks/index.html">EBAS Data Access by User Country (# unique IPs) - All Frameworks</a>
+            <p><i>Production date: 18th of September 2018</i></p>
+        </div><!-- /.col-lg-4 -->
+
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                <a href="https://ebas-statistics.github.io/ebas-world-map/2017/ebas_data_access_by_user_country_unique_ips_emep_actris_gaw-wdca_gaw-wdcrg/index.html">EBAS Data Access by User Country (# unique IPs) - EMEP, ACTRIS, GAW-WDCA, GAW-WDCRG</a>
+                    <p><i>Production date: 18th of January 2018</i></p>
+
+          </div>
+
+</div>
+
 </body>
 
 </html>
